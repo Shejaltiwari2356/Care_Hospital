@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARE Hospitals - Book an Appointment</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* This will be copied to style.css in the next step, but is here for self-containment */
+        .appointment-page-hero {
+            background-color: #f8f9fa;
+            padding: 40px 0 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .appointment-page-hero h1 {
+            font-size: 38px;
+            color: #1e3a8a;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .appointment-page-hero p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .appointment-content {
+            display: flex;
+            gap: 40px;
+            padding: 60px 0;
+        }
+
+        .appointment-form-container {
+            flex: 2;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid #0066cc;
+        }
+
+        .contact-sidebar {
+            flex: 1;
+            background: #e0f2fe;
+            padding: 30px;
+            border-radius: 15px;
+            height: fit-content;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-sidebar h3 {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #90cdf4;
+            padding-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .contact-sidebar ul {
+            list-style: none;
+        }
+
+        .contact-sidebar li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .contact-sidebar i {
+            color: #0066cc;
+            font-size: 20px;
+            padding-top: 3px;
+        }
+
+        .form-title {
+            font-size: 28px;
+            color: #0066cc;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
+            outline: none;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .form-actions {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn-submit-appointment {
+            background: linear-gradient(135deg, #0066cc, #0052a3);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-submit-appointment:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.4);
+        }
+
+        /* Responsive Design for Appointment Page */
+        @media (max-width: 992px) {
+            .appointment-content {
+                flex-direction: column;
+            }
+            .contact-sidebar {
+                order: -1; /* Move sidebar above form on mobile */
+            }
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container">
+            <ul class="top-links">
+                <li><a href="#"><i class="fas fa-globe"></i> About Us</a></li>
+                <li><a href="#">International Patients</a></li>
+                <li><a href="#">Pay Online</a></li>
+                <li><a href="#">Online Lab Reports</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Enquire Now</a></li>
+                <li><a href="#">Feedback</a></li>
+            </ul>
+            <div class="contact-info">
+                <span><i class="fas fa-phone"></i> +91-4068106587</span>
+                <select><option>English</option><option>Hindi</option></select>
+                <select><option>Hospitals</option><option>Clinic</option></select>
+                <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
+                <a href="#" class="icon-link menu-toggle"><i class="fas fa-bars"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <p>CARE<br>HOSPITALS</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#"><i class="fas fa-user-md"></i> Doctors</a></li>
+                    <li><a href="#"><i class="fas fa-hand-holding-medical"></i> Specialities & Treatments</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Hospitals & Directions</a></li>
+                    <li><a href="#" class="btn-appointment active"><i class="fas fa-calendar-check"></i> Book an Appointment</a></li>
+                    <li><a href="#"><i class="fas fa-address-book"></i> Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="appointment-page-hero">
+        <div class="container">
+            <h1>🗓️ Book Your Appointment</h1>
+            <p>Fill out the form below and one of our patient care executives will contact you shortly.</p>
+        </div>
+    </section>
+
+    <section class="appointment-section">
+        <div class="container appointment-content">
+            
+            <div class="appointment-form-container">
+                <h2 class="form-title">Patient & Appointment Details</h2>
+                <form action="#" method="POST">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Patient Full Name <span style="color:red;">*</span></label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span style="color:red;">*</span></label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+91-XXXXXXXXXX">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Preferred Appointment Date</label>
+                            <input type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="location">Select Hospital Location <span style="color:red;">*</span></label>
+                            <select id="location" name="location" required>
+                                <option value="">-- Choose Location --</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Raipur">Raipur</option>
+                                <option value="Bhubaneswar">Bhubaneswar</option>
+                                <option value="Visakhapatnam">Visakhapatnam</option>
+                                <option value="Nagpur">Nagpur</option>
+                                <option value="Indore">Indore</option>
+                                <option value="Aurangabad">Aurangabad</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="speciality">Select Speciality/Treatment <span style="color:red;">*</span></label>
+                            <select id="speciality" name="speciality" required>
+                                <option value="">-- Choose Speciality --</option>
+                                <option value="Cardiac Sciences">Cardiac Sciences</option>
+                                <option value="Gastro Sciences">Gastro Sciences</option>
+                                <option value="Nephrology">Nephrology</option>
+                                <option value="Neurosciences">Neurosciences</option>
+                                <option value="Orthopaedics">Orthopaedics</option>
+                                <option value="Paediatrics">Paediatrics</option>
+                                </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Briefly describe your medical concern (Optional)</label>
+                        <textarea id="message" name="message" rows="4" placeholder="e.g., Requesting a consultation for knee pain..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit-appointment">
+                            <i class="fas fa-paper-plane"></i> Request Call Back & Appointment
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="contact-sidebar">
+                <h3>Need Immediate Assistance?</h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            Emergency Helpline<br>
+                            <a href="tel:04061656565" style="color:#0066cc; text-decoration:none;">040 6165 6565</a> (24/7)
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-stethoscope"></i>
+                        <div>
+                            Second Opinion<br>
+                            <a href="#" style="color:#0066cc; text-decoration:none;">Submit your reports online</a>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            WhatsApp Us<br>
+                            <a href="#" style="color:#0066cc; text-decoration:none;">Chat with a representative</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column registered-office">
+                    <h4>Registered office</h4>
+                    <p>Quality CARE India Limited<br>#6-3-248/2, Road No.1,<br>Banjara Hills, Hyderabad-500034,</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Know Us</h4>
+                    <ul>
+                        <li><a href="#">Hospitals & Directions</a></li>
+                        <li><a href="#">Specialities & Treatment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Actions</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#" style="color:#fbbf24;">Book an Appointment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Centres of Excellence</h4>
+                    <ul>
+                        <li><a href="#">Cardiac Sciences</a></li>
+                        <li><a href="#">Gastro Sciences</a></li>
+                        <li><a href="#">Nephrology</a></li>
+                        <li><a href="#">Neurosciences</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 CARE Hospitals. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <div class="sticky-sidebar">
+        <a href="#" class="sidebar-item health-packages"><i class="fas fa-box"></i> Health Packages</a>
+        <a href="#" class="sidebar-item phone-number"><i class="fas fa-phone"></i> 040 6165 6565</a>
+        <a href="#" class="sidebar-item book-appointment"><i class="fas fa-calendar-alt"></i> Book an Appointment</a>
+        <a href="#" class="sidebar-item second-opinion"><i class="fas fa-stethoscope"></i> Second Opinion</a>
+        <a href="#" class="sidebar-item whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+
+</body>
+</html>

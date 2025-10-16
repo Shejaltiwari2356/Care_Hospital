@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARE Hospitals - Hospitals & Directions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* This CSS will be added to style.css in the next step */
+        .hospitals-hero {
+            background-color: #f0f9ff;
+            padding: 40px 0 20px;
+            border-bottom: 2px solid #b3d9ff;
+        }
+
+        .hospitals-hero h1 {
+            font-size: 38px;
+            color: #1e3a8a;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .hospitals-hero p {
+            font-size: 18px;
+            color: #666;
+        }
+        
+        /* Hospital Content Section */
+        .hospital-content-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .location-tabs-large {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+        
+        .tab-btn-large {
+            background: transparent;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-btn-large:hover,
+        .tab-btn-large.active {
+            color: #0066cc;
+            border-bottom: 3px solid #0066cc;
+        }
+
+        .hospital-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .hospital-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .hospital-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.15);
+        }
+
+        .hospital-map-placeholder {
+            height: 200px;
+            background: #cceeff; /* Light blue placeholder for map */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #0066cc;
+            font-size: 14px;
+        }
+
+        .hospital-details {
+            padding: 25px;
+        }
+
+        .hospital-details h3 {
+            color: #1e3a8a;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .hospital-details p {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .hospital-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .hospital-actions a {
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+
+        .btn-directions {
+            background: #e0f2fe;
+            color: #0066cc;
+        }
+
+        .btn-contact {
+            background: #0066cc;
+            color: white;
+        }
+
+        .btn-directions:hover {
+            background: #cce5ff;
+        }
+
+        .btn-contact:hover {
+            background: #0052a3;
+        }
+        
+        @media (max-width: 768px) {
+            .hospital-list {
+                grid-template-columns: 1fr;
+            }
+            .tab-btn-large {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container">
+            <ul class="top-links">
+                <li><a href="#"><i class="fas fa-globe"></i> About Us</a></li>
+                <li><a href="#">International Patients</a></li>
+                <li><a href="#">Pay Online</a></li>
+                <li><a href="#">Online Lab Reports</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Enquire Now</a></li>
+                <li><a href="#">Feedback</a></li>
+            </ul>
+            <div class="contact-info">
+                <span><i class="fas fa-phone"></i> +91-4068106587</span>
+                <select><option>English</option><option>Hindi</option></select>
+                <select><option>Hospitals</option><option>Clinic</option></select>
+                <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
+                <a href="#" class="icon-link menu-toggle"><i class="fas fa-bars"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <p>CARE<br>HOSPITALS</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#"><i class="fas fa-user-md"></i> Doctors</a></li>
+                    <li><a href="#"><i class="fas fa-hand-holding-medical"></i> Specialities & Treatments</a></li>
+                    <li><a href="#" class="active"><i class="fas fa-map-marker-alt"></i> Hospitals & Directions</a></li>
+                    <li><a href="book-appointment.html" class="btn-appointment"><i class="fas fa-calendar-check"></i> Book an Appointment</a></li>
+                    <li><a href="#"><i class="fas fa-address-book"></i> Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hospitals-hero">
+        <div class="container">
+            <h1>🏥 Find a CARE Hospital Near You</h1>
+            <p>We serve 7 cities across 6 states. Select a location to view our facilities.</p>
+        </div>
+    </section>
+
+    <section class="hospital-content-section">
+        <div class="container">
+            
+            <div class="location-tabs-large">
+                <button class="tab-btn-large active" data-location="hyderabad">Hyderabad (5 Hospitals)</button>
+                <button class="tab-btn-large" data-location="raipur">Raipur (1 Hospital)</button>
+                <button class="tab-btn-large" data-location="bhubaneswar">Bhubaneswar (2 Hospitals)</button>
+                <button class="tab-btn-large" data-location="visakhapatnam">Visakhapatnam</button>
+                <button class="tab-btn-large" data-location="nagpur">Nagpur</button>
+                <button class="tab-btn-large" data-location="indore">Indore</button>
+                <button class="tab-btn-large" data-location="aurangabad">Aurangabad</button>
+            </div>
+
+            <div class="hospital-list" id="hyderabad-hospitals">
+                
+                <div class="hospital-card">
+                    <div class="hospital-map-placeholder">
+                        
+                    </div>
+                    <div class="hospital-details">
+                        <h3>Banjara Hills, Hyderabad</h3>
+                        <p>
+                            Primary Specialities: Cardiac, Gastro, Neurosciences.<br>
+                            Address: Road No. 1, Banjara Hills, Hyderabad - 500034.
+                        </p>
+                        <p style="font-weight: bold;"><i class="fas fa-phone-alt"></i> Call: 040 6799 8888</p>
+                        <div class="hospital-actions">
+                            <a href="#" class="btn-directions"><i class="fas fa-road"></i> Get Directions</a>
+                            <a href="book-appointment.html" class="btn-contact"><i class="fas fa-calendar-alt"></i> Book Visit</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card">
+                    <div class="hospital-map-placeholder">
+                        
+
+[Image of Hospital Location Map]
+
+                    </div>
+                    <div class="hospital-details">
+                        <h3>Nampally, Hyderabad</h3>
+                        <p>
+                            Primary Specialities: Orthopaedics, Paediatrics, Transplants.<br>
+                            Address: Exhibition Road, Nampally, Hyderabad - 500001.
+                        </p>
+                        <p style="font-weight: bold;"><i class="fas fa-phone-alt"></i> Call: 040 6810 6587</p>
+                        <div class="hospital-actions">
+                            <a href="#" class="btn-directions"><i class="fas fa-road"></i> Get Directions</a>
+                            <a href="book-appointment.html" class="btn-contact"><i class="fas fa-calendar-alt"></i> Book Visit</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hospital-card">
+                    <div class="hospital-map-placeholder">
+                        
+                    </div>
+                    <div class="hospital-details">
+                        <h3>Musheerabad, Hyderabad</h3>
+                        <p>
+                            Primary Specialities: Urology, Nephrology, Woman & Child Institute.<br>
+                            Address: Musheerabad Main Road, Kavadiguda, Hyderabad - 500020.
+                        </p>
+                        <p style="font-weight: bold;"><i class="fas fa-phone-alt"></i> Call: 040 2753 6565</p>
+                        <div class="hospital-actions">
+                            <a href="#" class="btn-directions"><i class="fas fa-road"></i> Get Directions</a>
+                            <a href="book-appointment.html" class="btn-contact"><i class="fas fa-calendar-alt"></i> Book Visit</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="hospital-list" id="raipur-hospitals" style="display: none;">
+                </div>
+            
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column registered-office">
+                    <h4>Registered office</h4>
+                    <p>Quality CARE India Limited<br>#6-3-248/2, Road No.1,<br>Banjara Hills, Hyderabad-500034,</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Know Us</h4>
+                    <ul>
+                        <li><a href="#" style="color:#fbbf24;">Hospitals & Directions</a></li>
+                        <li><a href="#">Specialities & Treatment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Actions</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="book-appointment.html">Book an Appointment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Centres of Excellence</h4>
+                    <ul>
+                        <li><a href="#">Cardiac Sciences</a></li>
+                        <li><a href="#">Gastro Sciences</a></li>
+                        <li><a href="#">Nephrology</a></li>
+                        <li><a href="#">Neurosciences</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 CARE Hospitals. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <div class="sticky-sidebar">
+        <a href="#" class="sidebar-item health-packages"><i class="fas fa-box"></i> Health Packages</a>
+        <a href="#" class="sidebar-item phone-number"><i class="fas fa-phone"></i> 040 6165 6565</a>
+        <a href="book-appointment.html" class="sidebar-item book-appointment"><i class="fas fa-calendar-alt"></i> Book an Appointment</a>
+        <a href="#" class="sidebar-item second-opinion"><i class="fas fa-stethoscope"></i> Second Opinion</a>
+        <a href="#" class="sidebar-item whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab-btn-large');
+            const hospitalLists = document.querySelectorAll('.hospital-list');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to the clicked tab
+                    tab.classList.add('active');
+
+                    // Hide all hospital lists
+                    hospitalLists.forEach(list => list.style.display = 'none');
+
+                    // Show the corresponding list (only 'hyderabad' is fully implemented in HTML above)
+                    const targetLocation = tab.getAttribute('data-location');
+                    const targetList = document.getElementById(targetLocation + '-hospitals');
+                    if (targetList) {
+                        targetList.style.display = 'grid';
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
